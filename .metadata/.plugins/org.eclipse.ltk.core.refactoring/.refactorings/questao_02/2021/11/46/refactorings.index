@@ -1,1 +1,14 @@
 1636564191919	Delete element
+1636774571448	Copy compilation units
+1636780650925	Rename type 'ListarExAlunos'
+1636780965015	Rename type 'VerificaHorarioCurso'
+1636781014346	Rename type 'VerificaCPF'
+1636781027488	Rename type 'VerificaFormatoData'
+1636781039754	Rename type 'VerificaHorario'
+1636826203678	Rename package 'testeDados'
+1636841109636	Delete element
+1636844859588	Delete element
+1636845303521	Rename local variable 'labelNome'
+1636845500960	Rename local variable 'textFieldCurso'
+1636845758599	Rename type 'MenuMain'
+1636846626247	Rename type 'Menu'

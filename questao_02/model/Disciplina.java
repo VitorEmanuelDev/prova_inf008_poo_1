@@ -7,19 +7,19 @@ import java.util.HashSet;
 
 public class Disciplina {
 	
-	private HashSet<String> codigo;
+	public HashSet<String> codigo;
 	
-	private String sigla;
+	public String sigla;
 	
-	private String nome;
+	public String nome;
 	
-	private ArrayList<Aula> aulas;
+	public ArrayList<Aula> aulas;
 	
-	private ArrayList<Horario> horarios;
+	public ArrayList<Horario> horarios;
 	
-	private Docente docente;
+	public Docente docente;
 	
-	private ArrayList<String> datas;
+	public ArrayList<String> datas;
 	
 	
 	public Disciplina() {}

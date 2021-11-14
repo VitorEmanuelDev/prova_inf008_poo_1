@@ -4,9 +4,9 @@ import java.util.HashSet;
 
 public class Pessoa {
 	
-	private String nome;
+	public String nome;
 
-	private HashSet<String> cpf;
+	public HashSet<String> cpf;
 	
 	public Pessoa() {}
 

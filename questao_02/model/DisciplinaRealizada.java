@@ -2,9 +2,9 @@ package model;
 
 public class DisciplinaRealizada extends Disciplina{
 	
-	private Disciplina disciplina;
+	public Disciplina disciplina;
 	
-	private float nota;
+	public float nota;
 		
 	public DisciplinaRealizada() {}
 	

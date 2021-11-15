@@ -8,7 +8,7 @@ public class Aluno extends Pessoa{
 		
 	public Curso curso;
 	
-	public ArrayList<DisciplinaRealizada> disciplinasRealizadas;//previous
+	public ArrayList<Disciplina> disciplinasRealizadas;//previous
 	
 	public ArrayList<Disciplina> disciplinasInscritas;//current
 	
@@ -31,11 +31,11 @@ public class Aluno extends Pessoa{
 		this.curso = curso;
 	}
 
-	public ArrayList<DisciplinaRealizada> getDisciplinaRealizadas() {
+	public ArrayList<Disciplina> getDisciplinaRealizadas() {
 		return disciplinasRealizadas;
 	}
 
-	public void setDisciplinaRealizadas(ArrayList<DisciplinaRealizada> disciplinaRealizadas) {
+	public void setDisciplinaRealizadas(ArrayList<Disciplina> disciplinaRealizadas) {
 		this.disciplinasRealizadas = disciplinaRealizadas;
 	}
 

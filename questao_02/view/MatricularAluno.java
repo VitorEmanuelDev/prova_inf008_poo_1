@@ -25,7 +25,7 @@ import model.Docente;
 
 public class MatricularAluno extends Menu{
 
-	public void matricularAluno(JMenu menu, ArrayList<Curso> cursos, ArrayList<Aluno> alunos, HashSet<String> CPF,  HashSet<String> codigoCurso){
+	public void matricularAluno(JMenu menu, ArrayList<Curso> cursos, ArrayList<Aluno> alunos, HashSet<String> CPF,  HashSet<String> codigoCurso, ArrayList<Disciplina> disciplinasInscritas){
 
 		JMenuBar menuBar;
 		JMenu submenu;
@@ -124,17 +124,18 @@ public class MatricularAluno extends Menu{
 
 												//System.out.println(cursos.get(i).getAluno().get(0).getCpf().toString());
 
-												for (int k = 0; k < cursos.get(i).getAluno().size(); k++) {
+												for (int k = 0; k < alunos.size(); k++) {
 
-													if(cursos.get(i).getAluno().get(k).getCpf().contains(textCPFAluno.getText())) {
+													if(alunos.get(k).getCpf().contains(textCPFAluno.getText())) {
 														
-														System.out.println(cursos.get(i).getDisciplina().get(j));
-														System.out.println(disciplinasInscritas.size());
 														
+					
+														System.out.println("legit " +cursos.get(i).getDisciplina().get(j).getDatas());
 														disciplinasInscritas.add(cursos.get(i).getDisciplina().get(j));
 														//alunos.get(k).setDisciplinasInscritas(disciplinasInscritas);
-														cursos.get(i).getAluno().get(k).setDisciplinasInscritas(disciplinasInscritas);
-
+														alunos.get(k).setDisciplinasInscritas(disciplinasInscritas);
+														System.out.println(alunos.get(k).getDisciplinasInscritas().get(0).getDatas());
+														System.out.println("Aluno matriculado no disciplina " + alunos.get(k).getDisciplinasInscritas());
 													}
 												}
 											}

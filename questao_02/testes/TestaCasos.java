@@ -90,11 +90,11 @@ class TestaCasos {
 		disciplinas.get(0).setCodigo(codigoDisciplina);
 		aulas.add(new Aula());
 		aulas.get(0).setDuracao(60);
-		disciplinas.get(0).setAula(aulas);
+		disciplinas.get(0).setAulas(aulas);
 
 		cursoTeste.setDisciplina(disciplinas);
 
-		assertNotNull(cursoTeste.getDisciplina().get(0).getAula().get(0).getDuracao());
+		assertNotNull(cursoTeste.getDisciplina().get(0).getAulas().get(0).getDuracao());
 
 	}
 
@@ -110,11 +110,11 @@ class TestaCasos {
 		disciplinas.get(0).setDatas(datas);
 
 		aulas.get(0).setDuracao(90);//alteracao
-		disciplinas.get(0).setAula(aulas);
+		disciplinas.get(0).setAulas(aulas);
 
 		cursoTeste.setDisciplina(disciplinas);
 
-		assertNotNull(cursoTeste.getDisciplina().get(0).getAula().get(0).getDuracao());
+		assertNotNull(cursoTeste.getDisciplina().get(0).getAulas().get(0).getDuracao());
 		assertNotNull(cursoTeste.getDisciplina().get(0).getSigla());
 		assertNotNull(cursoTeste.getNome());
 
@@ -141,7 +141,7 @@ class TestaCasos {
 		disciplinas.get(0).setCodigo(codigoDisciplina);
 		aulas.add(new Aula());
 		aulas.get(0).setDuracao(60);
-		disciplinas.get(0).setAula(aulas);
+		disciplinas.get(0).setAulas(aulas);
 
 		cursoTeste.setDisciplina(disciplinas);
 
@@ -267,11 +267,11 @@ class TestaCasos {
 
 										aluno.getDisciplinaRealizadas().get(k).setNota(nota);
 
-										for(int l = 0; l < aluno.getDisciplinaRealizadas().get(k).getAula().size(); l++) {
-											//aluno.getDisciplinaRealizadas().get(k).getAula().get(l).setDuracao(duracao);
+										for(int l = 0; l < aluno.getDisciplinaRealizadas().get(k).getAulas().size(); l++) {
+											//aluno.getDisciplinaRealizadas().get(k).getAulas().get(l).setDuracao(duracao);
 											if(alunos.get(i).getDisciplinaRealizadas().get(k).getCodigo().contains(codigoDisciplina) && nota >= 5) {
 												float totalHorasAulno = alunos.get(i).getTotalCargaHorariaCumprida();
-												totalHorasAulno += alunos.get(i).getDisciplinaRealizadas().get(j).getAula().get(k).getDuracao();
+												totalHorasAulno += alunos.get(i).getDisciplinaRealizadas().get(j).getAulas().get(k).getDuracao();
 												alunos.get(i).setTotalCargaHorariaCumprida(totalHorasAulno);
 												assertNotNull(alunos.get(i).getTotalCargaHorariaCumprida());
 											}
@@ -435,11 +435,11 @@ class TestaCasos {
 
 										aluno.getDisciplinaRealizadas().get(k).setNota(nota);
 
-										for(int l = 0; l < aluno.getDisciplinaRealizadas().get(k).getAula().size(); l++) {
-											//aluno.getDisciplinaRealizadas().get(k).getAula().get(l).setDuracao(duracao);
+										for(int l = 0; l < aluno.getDisciplinaRealizadas().get(k).getAulas().size(); l++) {
+											//aluno.getDisciplinaRealizadas().get(k).getAulas().get(l).setDuracao(duracao);
 											if(alunos.get(i).getDisciplinaRealizadas().get(k).getCodigo().contains(codigoDisciplina) && nota >= 5) {
 												float totalHorasAulno = alunos.get(i).getTotalCargaHorariaCumprida();
-												totalHorasAulno += alunos.get(i).getDisciplinaRealizadas().get(j).getAula().get(k).getDuracao();
+												totalHorasAulno += alunos.get(i).getDisciplinaRealizadas().get(j).getAulas().get(k).getDuracao();
 												alunos.get(i).setTotalCargaHorariaCumprida(totalHorasAulno);
 												assertNull(alunos.get(i).getTotalCargaHorariaCumprida());
 											}
@@ -558,11 +558,11 @@ class TestaCasos {
 						}
 
 
-						for(int k = 0; k < alunos.get(i).getDisciplinaRealizadas().get(j).getAula().size(); k++) {
+						for(int k = 0; k < alunos.get(i).getDisciplinaRealizadas().get(j).getAulas().size(); k++) {
 							if(alunos.get(i).getDisciplinaRealizadas().get(j).getCodigo().contains(codigoDisciplina) && nota >= 5) {
 
 								float totalHorasAulno = alunos.get(i).getTotalCargaHorariaCumprida();
-								totalHorasAulno += alunos.get(i).getDisciplinaRealizadas().get(j).getAula().get(k).getDuracao();
+								totalHorasAulno += alunos.get(i).getDisciplinaRealizadas().get(j).getAulas().get(k).getDuracao();
 								alunos.get(i).setTotalCargaHorariaCumprida(totalHorasAulno);
 								assertNotNull(alunos.get(i).getTotalCargaHorariaCumprida());
 
@@ -605,10 +605,10 @@ class TestaCasos {
 
 			for(int j = 0; j < cursos.get(i).getDisciplina().size(); j++) {
 
-				for(int k = 0; k < cursos.get(i).getDisciplina().get(j).getAula().size(); k++) {
+				for(int k = 0; k < cursos.get(i).getDisciplina().get(j).getAulas().size(); k++) {
 
-					totalHorasCurso += cursos.get(i).getDisciplina().get(j).getAula().get(k).getDuracao();
-					assertNotNull(cursos.get(i).getDisciplina().get(j).getAula().get(k).getDuracao());
+					totalHorasCurso += cursos.get(i).getDisciplina().get(j).getAulas().get(k).getDuracao();
+					assertNotNull(cursos.get(i).getDisciplina().get(j).getAulas().get(k).getDuracao());
 				}
 
 				//System.out.println("\nLista de alunos de : " + cursos.get(i).getNome());
@@ -669,10 +669,10 @@ class TestaCasos {
 
 			for(int j = 0; j < cursos.get(i).getDisciplina().size(); j++) {
 
-				for(int k = 0; k < cursos.get(i).getDisciplina().get(j).getAula().size(); k++) {
+				for(int k = 0; k < cursos.get(i).getDisciplina().get(j).getAulas().size(); k++) {
 
-					totalHorasCurso += cursos.get(i).getDisciplina().get(j).getAula().get(k).getDuracao();
-					assertNotNull(cursos.get(i).getDisciplina().get(j).getAula().get(k).getDuracao());
+					totalHorasCurso += cursos.get(i).getDisciplina().get(j).getAulas().get(k).getDuracao();
+					assertNotNull(cursos.get(i).getDisciplina().get(j).getAulas().get(k).getDuracao());
 				}
 
 				//System.out.println("\nLista de ex-alunos de : " + cursos.get(i).getNome());

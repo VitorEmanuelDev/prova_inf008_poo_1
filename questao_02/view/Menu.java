@@ -15,6 +15,7 @@ import javax.swing.*;
 
 public class Menu{
 
+
 	private static ArrayList<Curso> cursos = new ArrayList<Curso>();
 	static ArrayList<Horario> horariosCurso = new ArrayList<>();
 	private static ArrayList<Aluno> alunos = new ArrayList<>();
@@ -33,6 +34,7 @@ public class Menu{
 	public int contadorCursoNovo = 0;
 	public int contadorDisciplinaNova = 0;
 	public int contadorAlunoNovo = 0;
+	public int contadorDataNova = 0;
 
 	public static JMenuBar criarMenu() {
 
@@ -61,15 +63,15 @@ public class Menu{
 
 
 		NovaDisciplina criarDisciplina = new NovaDisciplina();
-		criarDisciplina.novaDisciplina(menu, cursos, CPF, codigoCurso, codigoDisciplina, disciplinas, horariosDisciplina);
+		criarDisciplina.novaDisciplina(menu, cursos, CPF, codigoCurso, codigoDisciplina, disciplinas, horariosDisciplina, datas);
 
 
 		MatricularAluno matricularAluno = new MatricularAluno();
-		matricularAluno.matricularAluno(menu, cursos, alunos, CPF, codigoCurso);
+		matricularAluno.matricularAluno(menu, cursos, alunos, CPF, codigoCurso, disciplinasInscritas);
 
 
 		LancarNota lancarNota = new LancarNota();
-		lancarNota.lancarNota(menu);
+		lancarNota.lancarNota(menu, cursos, alunos, CPF, codigoCurso, codigoDisciplina, disciplinasRealizadas);
 
 
 		//Criar barra de editar no menu
@@ -80,13 +82,13 @@ public class Menu{
 		menuBar.add(menu);
 
 		EditarCurso alterarCurso = new EditarCurso();
-		alterarCurso.alterarCurso(menu);
+		alterarCurso.alterarCurso(menu, codigoCurso, cursos);
 
 		EditarDisciplina alterarDisciplina = new EditarDisciplina();
-		alterarDisciplina.alterarDisciplina(menu);
+		alterarDisciplina.alterarDisciplina(menu, codigoDisciplina, disciplinas);
 
 		RemoverDisciplina removerDisciplina = new RemoverDisciplina();
-		removerDisciplina.removerDisciplina(menu);
+		removerDisciplina.removerDisciplina(menu, codigoDisciplina, disciplinas, codigoCurso, cursos);
 
 
 		//Build Edit menu in the menu bar.
@@ -97,13 +99,13 @@ public class Menu{
 		menuBar.add(menu);
 
 		MostrarHorarioPorAluno mostrarHorariosPorAluno = new MostrarHorarioPorAluno();
-		mostrarHorariosPorAluno.mostrarHorarioPorAluno(menu);
+		mostrarHorariosPorAluno.mostrarHorarioPorAluno(menu, alunos, disciplinasInscritas);
 
 		MostrarExAlunos mostrarExAlunos = new MostrarExAlunos();
-		mostrarExAlunos.mostrarExAlunos(menu);
+		mostrarExAlunos.mostrarExAlunos(menu, alunos, disciplinasRealizadas, cursos);
 
 		MostrarDisciplinas mostrarDisciplinas = new MostrarDisciplinas();
-		mostrarDisciplinas.mostrarDisciplinas(menu);
+		mostrarDisciplinas.mostrarDisciplinas(menu, alunos, disciplinasRealizadas, disciplinasInscritas, cursos);
 
 		return menuBar;
 

@@ -3,6 +3,9 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -11,13 +14,17 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
-public class EditarCurso {
+import model.Curso;
+import model.Horario;
 
-	public void alterarCurso(JMenu menu) {
+public class EditarCurso extends Menu{
+
+	public void alterarCurso(JMenu menu, HashSet<String> codigoCurso, ArrayList<Curso> cursos) {
 
 		JMenuItem menuItem;
 		JMenu submenu;
@@ -43,34 +50,34 @@ public class EditarCurso {
 				frame.setSize(420, 300);
 				frame.setVisible(true);
 
-				JFrame.setDefaultLookAndFeelDecorated(true);
+				//JFrame.setDefaultLookAndFeelDecorated(true);
 
-				JLabel labelNome = new JLabel("Horário do curso que deseja alterar(HH:mm-HH:mm)");
-				labelNome.setBounds(30, 30, 400, 30);
-				JTextField textFieldCurso = new JTextField();
-				//set size of the text box
-				textFieldCurso.setBounds(30, 60, 150, 30);
-				//add elements to the frame
-				frame.add(labelNome);
-				frame.add(textFieldCurso);
-
-				JLabel labelCodigo = new JLabel("Qual o novo horário (HH:mm-HH:mm)");
-				labelCodigo.setBounds(30, 90, 300, 30);
-				JTextField textFieldCodigo = new JTextField();
-				//set size of the text box
-				textFieldCodigo.setBounds(30, 120, 150, 30);
-				//add elements to the frame
-				frame.add(labelCodigo);
-				frame.add(textFieldCodigo);
-				
-				JLabel labelCodigoo = new JLabel("Qual o código do curso");
-				labelCodigoo.setBounds(30, 150, 200, 30);
+				JLabel labelHorario = new JLabel("Horário do curso que deseja alterar(HH:mm-HH:mm)");
+				labelHorario.setBounds(30, 30, 400, 30);
 				JTextField textFieldHorario = new JTextField();
 				//set size of the text box
-				textFieldHorario.setBounds(30, 180, 150, 30);
+				textFieldHorario.setBounds(30, 60, 150, 30);
 				//add elements to the frame
-				frame.add(labelCodigoo);
+				frame.add(labelHorario);
 				frame.add(textFieldHorario);
+
+				JLabel labelNovoHorario = new JLabel("Qual o novo horário (HH:mm-HH:mm)");
+				labelNovoHorario.setBounds(30, 90, 300, 30);
+				JTextField textFieldNovoHorario = new JTextField();
+				//set size of the text box
+				textFieldNovoHorario.setBounds(30, 120, 150, 30);
+				//add elements to the frame
+				frame.add(labelNovoHorario);
+				frame.add(textFieldNovoHorario);
+
+				JLabel labelCodigo = new JLabel("Qual o código do curso");
+				labelCodigo.setBounds(30, 150, 200, 30);
+				JTextField textFielCodigo = new JTextField();
+				//set size of the text box
+				textFielCodigo.setBounds(30, 180, 150, 30);
+				//add elements to the frame
+				frame.add(labelCodigo);
+				frame.add(textFielCodigo);
 
 				// Creating a new buttons
 				JButton  okButton = new JButton("OK");
@@ -90,6 +97,51 @@ public class EditarCurso {
 
 				frame.setLayout(null);
 				frame.setVisible(true);
+
+				okButton.addActionListener(new ActionListener() {
+
+					@SuppressWarnings("deprecation")
+					public void actionPerformed(ActionEvent e) {
+
+						//JFrame.setDefaultLookAndFeelDecorated(true);
+
+						if(e.getSource() == okButton) {
+							
+							for(int i = 0; i < cursos.size(); i++) {
+							
+								if(cursos.get(i).getCodigo().contains(textFielCodigo.getText())) {
+									
+									for(int j = 0; j < cursos.get(i).getHorarios().size(); j++) {
+										
+										if(cursos.get(i).getHorarios().get(j).getHorario().contains(textFieldHorario.getText())) {
+											
+											try {			
+												
+												formatHorarioCurso.parse(textFieldNovoHorario.getText());
+												cursos.get(i).getHorarios().get(j).setHorario(textFieldNovoHorario.getText());
+												System.out.println(cursos.get(i).getHorarios().get(j).getHorario());
+											} catch (ParseException e1) {
+
+												e1.printStackTrace();
+											}
+
+										}
+
+									}
+
+
+								}
+
+							}
+
+						}
+
+						JOptionPane.showMessageDialog(frame, "Cadastro realizado!");
+
+					}
+
+				});
+
 			}
 		});
 
@@ -107,27 +159,27 @@ public class EditarCurso {
 				frame.setSize(300, 280);
 				frame.setVisible(true);
 
-				JFrame.setDefaultLookAndFeelDecorated(true);
+				//JFrame.setDefaultLookAndFeelDecorated(true);
 
 				JLabel labelNome = new JLabel("Qual o novo nome do curso?");
 				labelNome.setBounds(30, 30, 300, 30);
-				JTextField textFieldCurso = new JTextField();
+				JTextField textFieldNovoNome = new JTextField();
 				//set size of the text box
-				textFieldCurso.setBounds(30, 60, 150, 30);
+				textFieldNovoNome.setBounds(30, 60, 150, 30);
 				//add elements to the frame
 				frame.add(labelNome);
-				frame.add(textFieldCurso);
+				frame.add(textFieldNovoNome);
 
-				JLabel labelCodigoo = new JLabel("Qual o código do curso");
-				labelCodigoo.setBounds(30, 90, 200, 30);
-				JTextField textFieldHorario = new JTextField();
+				JLabel labelCodigo = new JLabel("Qual o código do curso");
+				labelCodigo.setBounds(30, 90, 200, 30);
+				JTextField textFielCodigo = new JTextField();
 				//set size of the text box
-				textFieldHorario.setBounds(30, 120, 150, 30);
+				textFielCodigo.setBounds(30, 120, 150, 30);
 				//add elements to the frame
-				frame.add(labelCodigoo);
-				frame.add(textFieldHorario);
+				frame.add(labelCodigo);
+				frame.add(textFielCodigo);
 
-				
+
 
 				// Creating a new buttons
 				JButton  okButton = new JButton("OK");
@@ -147,12 +199,40 @@ public class EditarCurso {
 
 				frame.setLayout(null);
 				frame.setVisible(true);
+
+				okButton.addActionListener(new ActionListener() {
+
+					@SuppressWarnings("deprecation")
+					public void actionPerformed(ActionEvent e) {
+					System.out.println("a");
+						//JFrame.setDefaultLookAndFeelDecorated(true);
+
+						if(e.getSource() == okButton) {
+							System.out.println("b");
+							for(int i = 0; i < cursos.size(); i++) {
+								System.out.println("c");
+								if(cursos.get(i).getCodigo().contains(textFielCodigo.getText())) {
+									System.out.println("c");
+									cursos.get(i).setNome(textFieldNovoNome.getText());
+									System.out.println("Nome modificado " + cursos.get(i).getNome());
+
+								}
+
+							}
+
+						}
+
+						JOptionPane.showMessageDialog(frame, "Cadastro realizado!");
+
+					}
+
+				});
 			}
 		});
 
 
 		menu.add(submenu);
-	
+
 
 
 

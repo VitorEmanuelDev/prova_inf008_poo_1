@@ -1,5 +1,5 @@
 package view;
-
+/*
 import model.*;
 
 import java.text.ParseException;
@@ -18,7 +18,7 @@ public class MenuAntigo {
 	public static ArrayList<String> datas = new ArrayList<>();
 	public static ArrayList<Disciplina> disciplinas = new ArrayList<>();
 	public static ArrayList<Disciplina> disciplinasInscritas;
-	public static ArrayList<Disciplina> disciplinasRealizadas;
+	//public static ArrayList<DisciplinaRealizada> disciplinasRealizadas;
 	public static ArrayList<Aula> aulas = new ArrayList<>();
 	public static HashSet<String> codigoDisciplina = new HashSet<>();
 	private static HashSet<String> CPF = new HashSet<>();
@@ -410,7 +410,7 @@ public class MenuAntigo {
 
 										aluno.getDisciplinaRealizadas().get(k).setNota(nota);
 
-										for(int l = 0; l < aluno.getDisciplinaRealizadas().get(k).getAula().size(); l++) {
+										for(int l = 0; l < aluno.getDisciplinaRealizadas().get(k).getAulas().size(); l++) {
 											//aluno.getDisciplinaRealizadas().get(k).getAula().get(l).setDuracao(duracao);
 											if(alunos.get(i).getDisciplinaRealizadas().get(k).getCodigo().contains(codigoDisciplina) && nota >= 5) {
 												float totalHorasAulno = alunos.get(i).getTotalCargaHorariaCumprida();
@@ -1262,4 +1262,4 @@ public class MenuAntigo {
 
 
 
-}
+}*/

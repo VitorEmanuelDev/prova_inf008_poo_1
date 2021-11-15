@@ -3,6 +3,8 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -11,16 +13,20 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
+import model.Curso;
+import model.Disciplina;
+
 public class RemoverDisciplina {
 
-	public void removerDisciplina(JMenu menu) {
-		
+	public void removerDisciplina(JMenu menu, HashSet<String> codigoDisciplina, ArrayList<Disciplina> disciplinas, HashSet<String> codigoCurso, ArrayList<Curso> cursos) {
+
 		JMenuItem menuItem;
-		
+
 		menuItem = new JMenuItem("Remover Disciplina...",
 				new ImageIcon("images/newfile.png"));
 		menuItem.setMnemonic(KeyEvent.VK_F);
@@ -47,7 +53,7 @@ public class RemoverDisciplina {
 				//add elements to the frame
 				frame.add(labelCodigo);
 				frame.add(textFieldCodigo);
-				
+
 				JLabel labelCodigoCurso = new JLabel("Código do curso");
 				labelCodigoCurso.setBounds(30, 90, 150, 30);
 				JTextField textFieldCodigoCurso = new JTextField();
@@ -75,10 +81,49 @@ public class RemoverDisciplina {
 
 				frame.setLayout(null);
 				frame.setVisible(true);
+
+				okButton.addActionListener(new ActionListener() {
+
+					@SuppressWarnings("deprecation")
+					public void actionPerformed(ActionEvent e) {
+
+						//JFrame.setDefaultLookAndFeelDecorated(true);
+
+						if(e.getSource() == okButton) {
+
+
+							for(int i = 0; i < cursos.size(); i++) {
+
+								if(cursos.get(i).getCodigo().contains(textFieldCodigoCurso.getText())) {
+
+									for(int j = 0; j < disciplinas.size(); j++) {
+
+										if(disciplinas.get(i).getCodigo().contains(textFieldCodigo.getText())) {
+											
+											disciplinas.remove(i);
+											
+											cursos.get(i).setDisciplina(disciplinas);
+											
+											System.out.println("Remoção realizada");
+										
+										}
+
+									}
+								}
+
+							}
+
+						}
+
+						JOptionPane.showMessageDialog(frame, "Remoção realizada!");
+
+					}
+
+				});
 			}
 		});
 
-		
+
 
 	}
 

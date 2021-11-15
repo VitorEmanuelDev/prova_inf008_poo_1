@@ -21,7 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
-public class NovoHorarioCurso extends Menu{
+public class NovoHorarioCurso {
+	
+	public static SimpleDateFormat formatHorarioCurso = new SimpleDateFormat("HH:mm-HH:mm");
 
 
 	//SimpleDateFormat formatHorarioCurso = new SimpleDateFormat("HH:mm-HH:mm");

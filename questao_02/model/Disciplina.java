@@ -20,7 +20,8 @@ public class Disciplina {
 	public Docente docente;
 	
 	public ArrayList<String> datas;
-	
+
+	public float nota;
 	
 	public Disciplina() {}
 	
@@ -28,7 +29,7 @@ public class Disciplina {
 	
 
 	public Disciplina(HashSet<String> codigo, String sigla, String nome, ArrayList<Aula> aulas,
-			ArrayList<Horario> horarios, Docente docente, ArrayList<String> datas) {
+			ArrayList<Horario> horarios, Docente docente, ArrayList<String> datas, float nota) {
 		super();
 		this.codigo = codigo;
 		this.sigla = sigla;
@@ -37,6 +38,7 @@ public class Disciplina {
 		this.horarios = horarios;
 		this.docente = docente;
 		this.datas = datas;
+		this.nota = nota;
 	}
 
 
@@ -60,10 +62,10 @@ public class Disciplina {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public ArrayList<Aula> getAula() {
+	public ArrayList<Aula> getAulas() {
 		return aulas;
 	}
-	public void setAula(ArrayList<Aula> aulas) {
+	public void setAulas(ArrayList<Aula> aulas) {
 		this.aulas = aulas;
 	}
 
@@ -88,6 +90,15 @@ public class Disciplina {
 
 	public void setHorarios(ArrayList<Horario> horarios) {
 		this.horarios = horarios;
+	}
+
+	public float getNota() {
+		return nota;
+	}
+
+
+	public void setNota(float nota) {
+		this.nota = nota;
 	}
 
 

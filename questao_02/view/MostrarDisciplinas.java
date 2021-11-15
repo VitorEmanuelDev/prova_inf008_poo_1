@@ -105,16 +105,16 @@ public class MostrarDisciplinas {
 													
 													for(int n = 0; n < cursos.get(i).getAluno().size(); n++) {
 
-														if(!cursos.get(i).getAluno().get(m).
+														if(cursos.get(i).getAluno().get(m).
 														getDisciplinaRealizadas().get(n).
 														getSigla().equals(cursos.get(i).
 														getDisciplina().get(l).getSigla())) {
 															
-															alunoDisciplinasInscritasOuACursar.put(cursos.get(i).getAluno().get(m).getNome(), cursos.get(i).getDisciplina());
+															alunoDisciplinasRealizadas.put(cursos.get(i).getAluno().get(m).getNome(), cursos.get(i).getDisciplina());
 															
 														}else {
 															
-															alunoDisciplinasRealizadas.put(cursos.get(i).getAluno().get(m).getNome(), cursos.get(i).getDisciplina());
+															alunoDisciplinasInscritasOuACursar.put(cursos.get(i).getAluno().get(m).getNome(), cursos.get(i).getDisciplina());
 															
 														}
 																														
@@ -162,7 +162,7 @@ public class MostrarDisciplinas {
 							JFrame frame1 = new JFrame();
 
 							// Frame Title
-							frame.setTitle("Disciplinas a cursar");
+							frame1.setTitle("Disciplinas cursadas");
 
 
 

@@ -47,7 +47,7 @@ public class NovaDisciplina extends Menu{
 				final JFrame frame = new JFrame("Informe os dados da disciplina");
 
 				frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-				frame.setSize(310, 700);
+				frame.setSize(350, 700);
 				frame.setVisible(true);
 
 				//JFrame.setDefaultLookAndFeelDecorated(true);
@@ -125,7 +125,7 @@ public class NovaDisciplina extends Menu{
 				frame.add(textFieldCodigoCurso);
 
 				JLabel labelData= new JLabel("Qual a data da primeira aula? (dd-MM-yyyy)");
-				labelData.setBounds(30, 510, 300, 30);
+				labelData.setBounds(30, 510, 350, 30);
 				JTextField textFieldData = new JTextField();
 				//set size of the text box
 				textFieldData.setBounds(30, 540, 150, 30);

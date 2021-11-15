@@ -43,7 +43,7 @@ public class RemoverDisciplina {
 				frame.setSize(250, 200);
 				frame.setVisible(true);
 
-				JFrame.setDefaultLookAndFeelDecorated(true);
+				//JFrame.setDefaultLookAndFeelDecorated(true);
 
 				JLabel labelCodigo = new JLabel("Código da disciplina");
 				labelCodigo.setBounds(30, 30, 150, 30);

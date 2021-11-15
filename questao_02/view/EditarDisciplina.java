@@ -131,7 +131,7 @@ public class EditarDisciplina extends Menu{
 				frame.setSize(350, 200);
 				frame.setVisible(true);
 
-				JFrame.setDefaultLookAndFeelDecorated(true);
+				//JFrame.setDefaultLookAndFeelDecorated(true);
 
 				JLabel labelNome = new JLabel("Qual a nova carga horária? > 30 ou < 90");
 				labelNome.setBounds(30, 30, 400, 30);
@@ -424,7 +424,7 @@ public class EditarDisciplina extends Menu{
 				frame.setSize(350, 400);
 				frame.setVisible(true);
 
-				JFrame.setDefaultLookAndFeelDecorated(true);
+				//JFrame.setDefaultLookAndFeelDecorated(true);
 
 				JLabel labelNome = new JLabel("Informe o nome do novo docente");
 				labelNome.setBounds(30, 30, 400, 30);

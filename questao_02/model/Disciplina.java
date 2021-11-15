@@ -25,24 +25,6 @@ public class Disciplina {
 	
 	public Disciplina() {}
 	
-	
-	
-
-	public Disciplina(HashSet<String> codigo, String sigla, String nome, ArrayList<Aula> aulas,
-			ArrayList<Horario> horarios, Docente docente, ArrayList<String> datas, float nota) {
-		super();
-		this.codigo = codigo;
-		this.sigla = sigla;
-		this.nome = nome;
-		this.aulas = aulas;
-		this.horarios = horarios;
-		this.docente = docente;
-		this.datas = datas;
-		this.nota = nota;
-	}
-
-
-
 
 	public HashSet<String> getCodigo() {
 		return codigo;

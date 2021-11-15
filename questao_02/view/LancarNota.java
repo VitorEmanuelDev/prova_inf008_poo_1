@@ -46,7 +46,7 @@ public class LancarNota extends Menu{
 				frame.setSize(310, 350);
 				frame.setVisible(true);
 
-				JFrame.setDefaultLookAndFeelDecorated(true);
+				//JFrame.setDefaultLookAndFeelDecorated(true);
 
 
 				JLabel labelCodigoCurso = new JLabel("Informe o código do curso");

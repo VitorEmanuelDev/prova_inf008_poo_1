@@ -87,115 +87,54 @@ public class MostrarDisciplinas {
 
 
 							HashMap<String, ArrayList<Disciplina>> alunoDisciplinasInscritasOuACursar = new HashMap<String, ArrayList<Disciplina>>();
-							
-							HashMap<String, ArrayList<Disciplina>> alunoDisciplinasRealizadas = new HashMap<String, ArrayList<Disciplina>>();
-/*
-							float duracaoCurso = 0;
-							for(int i = 0; i < cursos.size(); i++) {
-								if(cursos.get(i).getCodigo().contains(textCursoCodigo.getText())){
-									for(int j = 0; j < cursos.get(i).getDisciplina().size(); j++) {
-										for(int k = 0; k < cursos.get(i).getDisciplina().get(j).getAulas().size(); k++) {
-											duracaoCurso += cursos.get(i).getDisciplina().get(j).getAulas().get(k).getDuracao();
-										}
-									}
 
-								}
-							}
-							
-							float cargaHorariaRealizada = 0;
+							HashMap<String, ArrayList<Disciplina>> alunoDisciplinasRealizadas = new HashMap<String, ArrayList<Disciplina>>();
+
+
 							for(int i = 0; i < cursos.size(); i++) {
 
 								if(cursos.get(i).getCodigo().contains(textCursoCodigo.getText())) {
 
 									for(int j = 0; j < cursos.get(i).getAluno().size(); j++) {
 
-										for(int k = 0; k < cursos.get(i).getAluno().get(j).getDisciplinaRealizadas().size(); k++) {
+										for(int k = 0; k < cursos.get(i).getDisciplina().size(); k++) {
 
-											for(int l = 0; l <  cursos.get(i).getAluno().get(j).getDisciplinaRealizadas().get(k).getAulas().size(); l++) {
-												cargaHorariaRealizada +=  cursos.get(i).getAluno().get(j).getDisciplinaRealizadas().get(k).getAulas().get(l).getDuracao();
-
-												if(cargaHorariaRealizada < duracaoCurso)													
-													alunosTela.put(alunos.get(j).getNome(), "Curso concluído");
-
-											}
-
-										}
-
-
-
-									}
-								}
-
-							}*/
-							
-							
-							for(int i = 0; i < cursos.size(); i++) {
-
-								float totalHorasCurso = 0;
-
-								for(int j = 0; j < cursos.get(i).getDisciplina().size(); j++) {
-
-									for(int k = 0; k < cursos.get(i).getDisciplina().get(j).getAulas().size(); k++) {
-
-										totalHorasCurso += cursos.get(i).getDisciplina().get(j).getAulas().get(k).getDuracao();
-
-									}
-
-									//System.out.println("\nLista de alunos de : " + cursos.get(i).getNome());
-									for(int k = 0; k < cursos.get(i).getAluno().get(k).getTotalCargaHorariaCumprida(); k++) {
-
-										if(cursos.get(i).getAluno().get(k).getTotalCargaHorariaCumprida() < totalHorasCurso) {
-
-											System.out.println("- " + cursos.get(i).getAluno().get(k).getNome());
-											
-											
-
-											//System.out.println("Matérias : ");
-											//System.out.println(" - concluídas : ");
-											for(int l = 0; l < cursos.get(i).getAluno().get(k).getDisciplinaRealizadas().size(); l++) {
-												alunoDisciplinasRealizadas.put(cursos.get(i).getAluno().get(k).getNome(),cursos.get(i).getAluno().get(k).getDisciplinaRealizadas());
-												System.out.println(" - " + cursos.get(i).getAluno().get(k).getDisciplinaRealizadas().get(l).getNome());
-											}
-
-											//System.out.println(" - cursando : ");
-											for(int l = 0; l < cursos.get(i).getAluno().get(k).getDisciplinasInscritas().size(); l++) {
-												alunoDisciplinasInscritasOuACursar.put(cursos.get(i).getAluno().get(k).getNome(),cursos.get(i).getAluno().get(k).getDisciplinasInscritas());
-												System.out.println(" - " + cursos.get(i).getAluno().get(k).getDisciplinaRealizadas().get(l).getNome());
-											}
-
-											//System.out.println(" - a cursar : ");
 											for(int l = 0; l < cursos.get(i).getDisciplina().size(); l++) {
 
-												for(int m = 0; m < cursos.get(i).getAluno().get(k).getDisciplinaRealizadas().size(); m++) {
+												for(int m = 0; m < cursos.get(i).getAluno().size(); m++) {
+													
+													for(int n = 0; n < cursos.get(i).getAluno().size(); n++) {
 
-													String codigoRealizada = cursos.get(i).getAluno().get(k).getDisciplinaRealizadas().get(k).getCodigo().toString();
-													String codigoCursando = cursos.get(i).getAluno().get(k).getDisciplinasInscritas().get(k).getCodigo().toString();
-
-													if(!cursos.get(i).getDisciplina().get(l).getCodigo().contains(codigoRealizada) &&
-															!cursos.get(i).getDisciplina().get(l).getCodigo().contains(codigoCursando)) {
-														alunoDisciplinasInscritasOuACursar.put(cursos.get(i).getAluno().get(k).getNome(),cursos.get(i).getAluno().get(k).getDisciplinasInscritas());
-														//System.out.println(" - " + cursos.get(i).getAluno().get(k).getDisciplinaRealizadas().get(l).getNome());
+														if(!cursos.get(i).getAluno().get(m).
+														getDisciplinaRealizadas().get(n).
+														getSigla().equals(cursos.get(i).
+														getDisciplina().get(l).getSigla())) {
+															
+															alunoDisciplinasInscritasOuACursar.put(cursos.get(i).getAluno().get(m).getNome(), cursos.get(i).getDisciplina());
+															
+														}else {
+															
+															alunoDisciplinasRealizadas.put(cursos.get(i).getAluno().get(m).getNome(), cursos.get(i).getDisciplina());
+															
+														}
+																														
+														
 													}
-
 												}
-
-
 											}
-
 										}
-									}	
 
+									}
 								}
 
 							}
-						
 
 							JFrame frame = new JFrame();
 
 							// Frame Title
 							frame.setTitle("Disciplinas a cursar");
-							
-							
+
+
 
 							JTable table = new JTable(alunoDisciplinasInscritasOuACursar.size(),2);
 							int linha = 0;
@@ -216,26 +155,26 @@ public class MostrarDisciplinas {
 							frame.setSize(500, 200);
 							// Frame Visible = true
 							frame.setVisible(true);
-							
-							
-							
-							
+
+
+
+
 							JFrame frame1 = new JFrame();
 
 							// Frame Title
 							frame.setTitle("Disciplinas a cursar");
-							
-							
+
+
 
 							JTable table1 = new JTable(alunoDisciplinasRealizadas.size(),2);
-							
-							linha = 0;
+
+							int linha1 = 0;
 							for(Entry<String, ArrayList<Disciplina>> entry: alunoDisciplinasRealizadas.entrySet()){
-								table.setValueAt(entry.getKey(),linha,0);
+								table1.setValueAt(entry.getKey(),linha1,0);
 								for(int i  = 0; i < entry.getValue().size(); i++) {
-									table.setValueAt(entry.getValue().get(i).getNome(),linha,1);
+									table1.setValueAt(entry.getValue().get(i).getNome(),linha1,1);
 								}
-								linha++;
+								linha1++;
 							}
 
 							frame1.setBounds(30, 40, 200, 300);

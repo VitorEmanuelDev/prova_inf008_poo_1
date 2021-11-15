@@ -98,7 +98,7 @@ public class NovaDisciplina extends Menu{
 				frame.add(textFieldCPFDocente);
 
 				JLabel labelHorasDisciplina = new JLabel("Qual a hora/aula da primeira data?");
-				labelHorasDisciplina.setBounds(30, 330, 250, 30);
+				labelHorasDisciplina.setBounds(30, 330, 300, 30);
 				JTextField textFieldHorasDisciplina = new JTextField();
 				//set size of the text box
 				textFieldHorasDisciplina.setBounds(30, 360, 150, 30);
@@ -106,8 +106,8 @@ public class NovaDisciplina extends Menu{
 				frame.add(labelHorasDisciplina);
 				frame.add(textFieldHorasDisciplina);
 
-				JLabel labelHorarioDisciplina= new JLabel("Informe o horário da disciplina");
-				labelHorarioDisciplina.setBounds(30, 390, 250, 30);
+				JLabel labelHorarioDisciplina= new JLabel("Informe o horário da disciplina HH:mm");
+				labelHorarioDisciplina.setBounds(30, 390, 300, 30);
 				JTextField textFieldHorarioDisciplina = new JTextField();
 				//set size of the text box
 				textFieldHorarioDisciplina.setBounds(30, 420, 150, 30);
@@ -124,8 +124,8 @@ public class NovaDisciplina extends Menu{
 				frame.add(labelCodigoCurso);
 				frame.add(textFieldCodigoCurso);
 
-				JLabel labelData= new JLabel("Qual a data da primeira aula?");
-				labelData.setBounds(30, 510, 250, 30);
+				JLabel labelData= new JLabel("Qual a data da primeira aula? (dd-MM-yyyy)");
+				labelData.setBounds(30, 510, 300, 30);
 				JTextField textFieldData = new JTextField();
 				//set size of the text box
 				textFieldData.setBounds(30, 540, 150, 30);
@@ -314,7 +314,7 @@ public class NovaDisciplina extends Menu{
 
 								}else {
 
-									JOptionPane.showMessageDialog(frame, "Erro: Nome do docente inválido");
+									JOptionPane.showMessageDialog(frame, "Erro: Data inválida");
 								}
 
 								if(textFieldHorarioDisciplina.getText() != null && !textFieldHorarioDisciplina.getText().isEmpty()) {
@@ -351,7 +351,7 @@ public class NovaDisciplina extends Menu{
 												disciplinas.add(disciplina);
 
 												cursos.get(j).setDisciplina(disciplinas);
-
+												JOptionPane.showMessageDialog(frame, "Cadastro realizado");
 												System.out.println("Cadastro realizado: " + cursos.get(j).getDisciplina().get(contadorDisciplinaNova));								
 												contadorDisciplinaNova++;											
 												break;		

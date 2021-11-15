@@ -129,10 +129,8 @@ public class LancarNota extends Menu{
 													
 													for(int j = 0; j < cursos.get(i).getDisciplina().size(); j++){
 														if(cursos.get(i).getDisciplina().get(j).getCodigo().contains(textCodigoDisciplina.getText())) {
-															
+																																												
 															disciplinasRealizadas.add(cursos.get(i).getDisciplina().get(j));	
-
-
 
 															for(int k = 0; k < cursos.get(i).getAluno().size(); k++){
 																if(cursos.get(i).getAluno().get(k).getCpf().contains(textCPF.getText())) {

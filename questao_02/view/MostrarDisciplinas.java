@@ -83,7 +83,7 @@ public class MostrarDisciplinas {
 
 						//JFrame.setDefaultLookAndFeelDecorated(true);
 
-						if(e.getSource() == okButton) {
+						if(e.getSource() == okButton) {// valor
 
 
 							HashMap<String, ArrayList<Disciplina>> alunoDisciplinasInscritasOuACursar = new HashMap<String, ArrayList<Disciplina>>();

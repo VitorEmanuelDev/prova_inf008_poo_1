@@ -6,13 +6,13 @@ import java.util.HashSet;
 
 public class Aluno extends Pessoa{
 		
-	public Curso curso;
+	private Curso curso;
 	
-	public ArrayList<Disciplina> disciplinasRealizadas;//previous
+	private ArrayList<Disciplina> disciplinasRealizadas;//previous
 	
-	public ArrayList<Disciplina> disciplinasInscritas;//current
+	private ArrayList<Disciplina> disciplinasInscritas;//current
 	
-	public float TotalCargaHorariaCumprida;
+	private float TotalCargaHorariaCumprida;
 	
 	public Aluno() {
 		TotalCargaHorariaCumprida = 0;		

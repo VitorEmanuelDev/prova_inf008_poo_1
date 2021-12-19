@@ -3,7 +3,7 @@ package model;
 public class Aula {
 	
 	
-	public float duracao = 0;
+	private float duracao = 0;
 	
 	public float getDuracao() {
 		return duracao;

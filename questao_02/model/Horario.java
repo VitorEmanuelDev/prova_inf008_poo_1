@@ -2,7 +2,7 @@ package model;
 
 public class Horario {
 
-	public String horario;
+	private String horario;
 
 	public Horario() {}
 	

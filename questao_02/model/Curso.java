@@ -7,15 +7,15 @@ import java.util.HashSet;
 
 public class Curso {
 	
-	public HashSet<String> codigo;
+	private HashSet<String> codigo;
 
-	public  String nome;
+	private  String nome;
 
-	public ArrayList<Disciplina> disciplinas;
+	private ArrayList<Disciplina> disciplinas;
 	
-	public ArrayList<Horario> horarios;
+	private ArrayList<Horario> horarios;
 	
-	public ArrayList<Aluno> alunos;
+	private ArrayList<Aluno> alunos;
 	
 
 	public Curso() {}

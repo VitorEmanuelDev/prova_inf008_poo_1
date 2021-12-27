@@ -1,8 +1,12 @@
 package model;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
+
+import javax.swing.JTextField;
 
 
 public class Curso {
@@ -81,6 +85,47 @@ public class Curso {
 		this.codigo = codigo;
 	}
 	
-	
+	@SuppressWarnings("unused")
+	public void editarCurso(ArrayList<Curso> cursos, SimpleDateFormat formatHorarioCurso, JTextField textFielCodigo, JTextField textFieldNovoHorario, JTextField textFieldHorario) {
+		for(int i = 0; i < cursos.size(); i++) {
+			
+			if(cursos.get(i).getCodigo().contains(textFielCodigo.getText())) {
+				
+				for(int j = 0; j < cursos.get(i).getHorarios().size(); j++) {
+					
+					if(cursos.get(i).getHorarios().get(j).getHorario().contains(textFieldHorario.getText())) {
+						
+						try {			
+							
+							formatHorarioCurso.parse(textFieldNovoHorario.getText());
+							cursos.get(i).getHorarios().get(j).setHorario(textFieldNovoHorario.getText());
+							System.out.println(cursos.get(i).getHorarios().get(j).getHorario());
+						} catch (ParseException e1) {
+
+							e1.printStackTrace();
+						}
+
+					}
+
+				}
+
+			}
+
+		}		
+	}
+
+	public void mudarNomeCurso(ArrayList<Curso> cursos, JTextField textFielCodigo, JTextField textFieldNovoNome) {
+		for(int i = 0; i < cursos.size(); i++) {
+			System.out.println("c");
+			if(cursos.get(i).getCodigo().contains(textFielCodigo.getText())) {
+				System.out.println("c");
+				cursos.get(i).setNome(textFieldNovoNome.getText());
+				System.out.println("Nome modificado " + cursos.get(i).getNome());
+
+			}
+
+		}
+		
+	}
 	
 }

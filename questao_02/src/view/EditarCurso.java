@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -28,7 +29,6 @@ public class EditarCurso extends Menu{
 
 		JMenuItem menuItem;
 		JMenu submenu;
-
 
 		menu.addSeparator();
 
@@ -82,7 +82,6 @@ public class EditarCurso extends Menu{
 				// Creating a new buttons
 				JButton  okButton = new JButton("OK");
 
-
 				// Creating a panel to add buttons
 				JPanel panel = new JPanel();
 
@@ -106,33 +105,8 @@ public class EditarCurso extends Menu{
 						//JFrame.setDefaultLookAndFeelDecorated(true);
 
 						if(e.getSource() == okButton) {
-							
-							for(int i = 0; i < cursos.size(); i++) {
-							
-								if(cursos.get(i).getCodigo().contains(textFielCodigo.getText())) {
-									
-									for(int j = 0; j < cursos.get(i).getHorarios().size(); j++) {
-										
-										if(cursos.get(i).getHorarios().get(j).getHorario().contains(textFieldHorario.getText())) {
-											
-											try {			
-												
-												formatHorarioCurso.parse(textFieldNovoHorario.getText());
-												cursos.get(i).getHorarios().get(j).setHorario(textFieldNovoHorario.getText());
-												System.out.println(cursos.get(i).getHorarios().get(j).getHorario());
-											} catch (ParseException e1) {
-
-												e1.printStackTrace();
-											}
-
-										}
-
-									}
-
-
-								}
-
-							}
+							Curso curso = new Curso();
+							curso.editarCurso(cursos, formatHorarioCurso, textFielCodigo, textFieldNovoHorario, textFieldHorario);		
 
 						}
 
@@ -179,8 +153,6 @@ public class EditarCurso extends Menu{
 				frame.add(labelCodigo);
 				frame.add(textFielCodigo);
 
-
-
 				// Creating a new buttons
 				JButton  okButton = new JButton("OK");
 
@@ -209,17 +181,9 @@ public class EditarCurso extends Menu{
 
 						if(e.getSource() == okButton) {
 							System.out.println("b");
-							for(int i = 0; i < cursos.size(); i++) {
-								System.out.println("c");
-								if(cursos.get(i).getCodigo().contains(textFielCodigo.getText())) {
-									System.out.println("c");
-									cursos.get(i).setNome(textFieldNovoNome.getText());
-									System.out.println("Nome modificado " + cursos.get(i).getNome());
-
-								}
-
-							}
-
+							Curso curso = new Curso();
+							curso.mudarNomeCurso(cursos, textFielCodigo, textFieldNovoNome);
+						
 						}
 
 						JOptionPane.showMessageDialog(frame, "Cadastro realizado!");

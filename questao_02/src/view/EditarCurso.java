@@ -29,6 +29,7 @@ public class EditarCurso extends Menu{
 
 		JMenuItem menuItem;
 		JMenu submenu;
+		Curso curso = new Curso();
 
 		menu.addSeparator();
 
@@ -104,10 +105,8 @@ public class EditarCurso extends Menu{
 
 						//JFrame.setDefaultLookAndFeelDecorated(true);
 
-						if(e.getSource() == okButton) {
-							Curso curso = new Curso();
+						if(e.getSource() == okButton) {							
 							curso.editarCurso(cursos, formatHorarioCurso, textFielCodigo, textFieldNovoHorario, textFieldHorario);		
-
 						}
 
 						JOptionPane.showMessageDialog(frame, "Cadastro realizado!");
@@ -176,14 +175,10 @@ public class EditarCurso extends Menu{
 
 					@SuppressWarnings("deprecation")
 					public void actionPerformed(ActionEvent e) {
-					System.out.println("a");
 						//JFrame.setDefaultLookAndFeelDecorated(true);
 
-						if(e.getSource() == okButton) {
-							System.out.println("b");
-							Curso curso = new Curso();
+						if(e.getSource() == okButton) {						
 							curso.mudarNomeCurso(cursos, textFielCodigo, textFieldNovoNome);
-						
 						}
 
 						JOptionPane.showMessageDialog(frame, "Cadastro realizado!");
@@ -194,12 +189,7 @@ public class EditarCurso extends Menu{
 			}
 		});
 
-
 		menu.add(submenu);
-
-
-
-
 	}
 
 }

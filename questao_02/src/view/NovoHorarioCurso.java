@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 public class NovoHorarioCurso {
-	
+
 	public static SimpleDateFormat formatHorarioCurso = new SimpleDateFormat("HH:mm-HH:mm");
 
 
@@ -31,6 +31,8 @@ public class NovoHorarioCurso {
 
 		JMenuItem menuItem;
 		//a group of JMenuItems
+		Curso curso = new Curso();
+
 		menuItem = new JMenuItem("Novo horário...",
 				new ImageIcon("images/newproject.png"));
 		menuItem.setMnemonic(KeyEvent.VK_P);
@@ -98,53 +100,16 @@ public class NovoHorarioCurso {
 
 						if(e.getSource() == okButton) {
 
+							curso.cadastrarNovoHorario(cursos, textFieldHorario, textFieldCodigo, formatHorarioCurso, frame);
 
-							if(textFieldHorario.getText() != null && !textFieldHorario.getText().isEmpty()) {
-
-								if(textFieldCodigo.getText() != null && !textFieldCodigo.getText().isEmpty()) {
-									//System.out.println(textFieldCodigo.getText());
-										Horario horarioCurso = new Horario();
-										
-										for(int j = 0; j < cursos.get(j).getCodigo().size(); j++) {
-
-											if(cursos.get(j).getCodigo().contains(textFieldCodigo.getText())) {
-											
-												try {			
-													formatHorarioCurso.parse(textFieldHorario.getText());
-													horarioCurso.setHorario(textFieldHorario.getText());
-													cursos.get(j).getHorarios().add(horarioCurso);
-													
-												} catch (ParseException e1) {
-													e1.printStackTrace();
-												}
-
-												System.out.println("Cadastro de horario realizado: " + cursos.get(j).getHorarios().get(cursos.get(j).getHorarios().size() - 1).getHorario() );								
-												JOptionPane.showMessageDialog(frame, "Cadastro realizado!");
-												break;		
-
-											}
-										}
-									}else {
-
-										JOptionPane.showMessageDialog(frame, "Erro: Código inválido");
-									}
-
-								}else {
-
-									JOptionPane.showMessageDialog(frame, "Erro: Horário inválido");
-								}
-
-							}
-						
+						}
 
 					}
 
-				
+				});
+			}
+		});
 
-			});
-		}
-	});
-
-}
+	}
 
 }

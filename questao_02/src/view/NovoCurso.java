@@ -29,6 +29,7 @@ public class NovoCurso extends Menu{
 	public void novoCurso(JMenu menu, ArrayList<Curso> cursos, HashSet<String> codigoCurso) {
 
 		JMenuItem menuItem; 
+		Curso curso = new Curso();
 
 		//a group of JMenuItems
 		menuItem = new JMenuItem("Novo curso...",
@@ -102,59 +103,10 @@ public class NovoCurso extends Menu{
 					public void actionPerformed(ActionEvent e) {
 
 						//JFrame.setDefaultLookAndFeelDecorated(true);
-
+						
 						if(e.getSource() == okButton) {
-
-							if(!codigoCurso.contains(textFieldCodigo.getText())) {
-								Curso curso = new Curso();
-
-								if(textFieldCurso.getText() != null && !textFieldCurso.getText().isEmpty()) {
-
-									curso.setNome(textFieldCurso.getText());
-									System.out.println("Cadastro de nome realizado: " + curso.getNome());
-
-								}else {
-
-									JOptionPane.showMessageDialog(frame, "Erro: Nome de curso inválido");
-								}
-
-								if(textFieldCodigo.getText() != null && !textFieldCodigo.getText().isEmpty()) {
-									codigoCurso.add(textFieldCodigo.getText());
-									curso.setCodigo(codigoCurso);
-									System.out.println("Cadastro de código realizado: " + curso.getCodigo());
-								}else {
-
-									JOptionPane.showMessageDialog(frame, "Erro: Código inválido");
-								}
-
-								if(textFieldHorario.getText() != null && !textFieldHorario.getText().isEmpty()) {
-									Horario horarioCurso = new Horario();		
-
-									try {			
-										formatHorarioCurso.parse(textFieldHorario.getText());
-										horarioCurso.setHorario(textFieldHorario.getText());
-										horariosCurso.add(horarioCurso);
-
-									} catch (ParseException e1) {
-										JOptionPane.showMessageDialog(frame, "Erro: Horário inválido");
-										e1.printStackTrace();
-									}
-
-									curso.setHorarios(horariosCurso);
-
-									System.out.println("Cadastro de horario realizado: " + curso.getHorarios().get(contadorCursoNovo).getHorario());								
-									JOptionPane.showMessageDialog(frame, "Cadastro realizado!");
-									contadorCursoNovo++;
-								}else {
-
-									JOptionPane.showMessageDialog(frame, "Erro: Horário inválido");
-								}
-
-								cursos.add(curso);
-
-							}else {
-								JOptionPane.showMessageDialog(frame, "Curso já existe!");
-							}
+							
+							curso.criarNovoCurso(codigoCurso, textFieldCodigo, textFieldCurso, textFieldHorario, formatHorarioCurso, horariosCurso, contadorCursoNovo, cursos, frame);	
 
 						}
 

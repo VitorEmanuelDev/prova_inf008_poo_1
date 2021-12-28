@@ -26,6 +26,7 @@ public class RemoverDisciplina {
 	public void removerDisciplina(JMenu menu, HashSet<String> codigoDisciplina, ArrayList<Disciplina> disciplinas, HashSet<String> codigoCurso, ArrayList<Curso> cursos) {
 
 		JMenuItem menuItem;
+		Disciplina disciplina = new Disciplina();
 
 		menuItem = new JMenuItem("Remover Disciplina...",
 				new ImageIcon("images/newfile.png"));
@@ -91,28 +92,8 @@ public class RemoverDisciplina {
 
 						if(e.getSource() == okButton) {
 
-
-							for(int i = 0; i < cursos.size(); i++) {
-
-								if(cursos.get(i).getCodigo().contains(textFieldCodigoCurso.getText())) {
-
-									for(int j = 0; j < disciplinas.size(); j++) {
-
-										if(disciplinas.get(i).getCodigo().contains(textFieldCodigo.getText())) {
-											
-											disciplinas.remove(i);
-											
-											cursos.get(i).setDisciplina(disciplinas);
-											
-											System.out.println("Remoção realizada");
-										
-										}
-
-									}
-								}
-
-							}
-
+							disciplina.removerDisciplina(cursos, disciplinas, textFieldCodigoCurso, textFieldCodigo);
+							
 						}
 
 						JOptionPane.showMessageDialog(frame, "Remoção realizada!");

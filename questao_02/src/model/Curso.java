@@ -4,10 +4,13 @@ package model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 
@@ -220,6 +223,7 @@ public class Curso {
 
 	public void matricularAlunoDisciplina(ArrayList<Curso> cursos, ArrayList<Disciplina> disciplinasInscritas, JTextField textCodigoCurso,
 			JTextField textFieldCodigoDisciplina, JTextField textCPFAluno, JFrame frame) {
+		
 		if(textCodigoCurso.getText() != null && !textCodigoCurso.getText().isEmpty()) {
 
 			if(textFieldCodigoDisciplina.getText() != null && !textFieldCodigoDisciplina.getText().isEmpty()) {
@@ -230,7 +234,6 @@ public class Curso {
 					for(int i = 0; i < cursos.size(); i++) {
 
 						for(int j = 0; j < cursos.get(i).getDisciplina().size(); j++) {
-
 
 
 							if(cursos.get(i).getDisciplina().get(j).getCodigo().contains(textFieldCodigoDisciplina.getText())) {
@@ -351,6 +354,162 @@ public class Curso {
 			if(cursos.get(i).getCodigo().contains(textCodigoCurso.getText()))
 				cursos.get(i).setAluno(alunos);
 		}
+		
+	}
+
+
+
+
+	public void mostrarHorarioAulaAluno(ArrayList<Aluno> alunos2, JTextField textCPFAluno) {
+		HashMap<String, ArrayList<Horario>> agendaAluno = new HashMap<String, ArrayList<Horario>>();
+
+		for(int i = 0; i < alunos.size(); i++) {
+
+			if(alunos.get(i).getCpf().contains(textCPFAluno.getText())) {
+
+				for(int j = 0; j < alunos.get(i).getDisciplinasInscritas().size(); j++) {
+
+					System.out.println("1" + alunos.get(i).getDisciplinasInscritas().get(j).getDatas());
+
+					for(int k = 0; k < alunos.get(i).getDisciplinasInscritas().get(j).getDatas().size(); k++) {
+
+						while(k < alunos.get(i).getDisciplinasInscritas().get(j).getHorarios().size()) {
+
+							agendaAluno.put(alunos.get(i).getDisciplinasInscritas().get(j).getDatas().get(k),  alunos.get(i).getDisciplinasInscritas().get(j).getHorarios());											}
+						k++;
+					
+					}
+
+				}
+
+			}
+
+		}
+
+		JFrame frame = new JFrame();
+
+		// Frame Title
+		frame.setTitle("Datas e horários");
+		
+		
+
+		JTable table = new JTable(agendaAluno.size(),2);
+		int linha = 0;
+		for(HashMap.Entry<String,ArrayList<Horario>> entry: agendaAluno.entrySet()){
+			table.setValueAt(entry.getKey(),linha,0);
+			for(int i = 0; i< entry.getValue().size(); i++) {
+				table.setValueAt(entry.getValue().get(i).getHorario(),linha,1);
+			}
+			linha++;
+		}
+
+		frame.setBounds(30, 40, 200, 300);
+
+		// adding it to JScrollPane
+		JScrollPane scrollPanel = new JScrollPane(table);
+		frame.add(scrollPanel);
+		// Frame Size
+		frame.setSize(500, 200);
+		// Frame Visible = true
+		frame.setVisible(true);		
+	}
+
+
+
+
+	public void criarNovoCurso(HashSet<String> codigoCurso, JTextField textFieldCodigo, JTextField textFieldCurso,
+			JTextField textFieldHorario, SimpleDateFormat formatHorarioCurso, ArrayList<Horario> horariosCurso,
+			int contadorCursoNovo, ArrayList<Curso> cursos, JFrame frame) {
+		if(!codigoCurso.contains(textFieldCodigo.getText())) {
+			Curso curso = new Curso();
+
+			if(textFieldCurso.getText() != null && !textFieldCurso.getText().isEmpty()) {
+
+				curso.setNome(textFieldCurso.getText());
+				System.out.println("Cadastro de nome realizado: " + curso.getNome());
+
+			}else {
+
+				JOptionPane.showMessageDialog(frame, "Erro: Nome de curso inválido");
+			}
+
+			if(textFieldCodigo.getText() != null && !textFieldCodigo.getText().isEmpty()) {
+				codigoCurso.add(textFieldCodigo.getText());
+				curso.setCodigo(codigoCurso);
+				System.out.println("Cadastro de código realizado: " + curso.getCodigo());
+			}else {
+
+				JOptionPane.showMessageDialog(frame, "Erro: Código inválido");
+			}
+
+			if(textFieldHorario.getText() != null && !textFieldHorario.getText().isEmpty()) {
+				Horario horarioCurso = new Horario();		
+
+				try {			
+					formatHorarioCurso.parse(textFieldHorario.getText());
+					horarioCurso.setHorario(textFieldHorario.getText());
+					horariosCurso.add(horarioCurso);
+
+				} catch (ParseException e1) {
+					JOptionPane.showMessageDialog(frame, "Erro: Horário inválido");
+					e1.printStackTrace();
+				}
+
+				curso.setHorarios(horariosCurso);
+
+				System.out.println("Cadastro de horario realizado: " + curso.getHorarios().get(contadorCursoNovo).getHorario());								
+				JOptionPane.showMessageDialog(frame, "Cadastro realizado!");
+				contadorCursoNovo++;
+			}else {
+
+				JOptionPane.showMessageDialog(frame, "Erro: Horário inválido");
+			}
+
+			cursos.add(curso);
+
+		}else {
+			JOptionPane.showMessageDialog(frame, "Curso já existe!");
+		}
+		
+	}
+
+
+	public void cadastrarNovoHorario(ArrayList<Curso> cursos, JTextField textFieldHorario, JTextField textFieldCodigo,
+			SimpleDateFormat formatHorarioCurso, JFrame frame) {
+		if(textFieldHorario.getText() != null && !textFieldHorario.getText().isEmpty()) {
+
+			if(textFieldCodigo.getText() != null && !textFieldCodigo.getText().isEmpty()) {
+				//System.out.println(textFieldCodigo.getText());
+					Horario horarioCurso = new Horario();
+					
+					for(int j = 0; j < cursos.get(j).getCodigo().size(); j++) {
+
+						if(cursos.get(j).getCodigo().contains(textFieldCodigo.getText())) {
+						
+							try {			
+								formatHorarioCurso.parse(textFieldHorario.getText());
+								horarioCurso.setHorario(textFieldHorario.getText());
+								cursos.get(j).getHorarios().add(horarioCurso);
+								
+							} catch (ParseException e1) {
+								e1.printStackTrace();
+							}
+
+							System.out.println("Cadastro de horario realizado: " + cursos.get(j).getHorarios().get(cursos.get(j).getHorarios().size() - 1).getHorario() );								
+							JOptionPane.showMessageDialog(frame, "Cadastro realizado!");
+							break;		
+
+						}
+					}
+				}else {
+
+					JOptionPane.showMessageDialog(frame, "Erro: Código inválido");
+				}
+
+			}else {
+
+				JOptionPane.showMessageDialog(frame, "Erro: Horário inválido");
+			}
 		
 	}
 	

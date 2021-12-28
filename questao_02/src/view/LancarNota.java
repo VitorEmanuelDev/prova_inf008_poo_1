@@ -29,6 +29,7 @@ public class LancarNota extends Menu{
 	public void lancarNota(JMenu menu, ArrayList<Curso> cursos, ArrayList<Aluno> alunos, HashSet<String> cPF, HashSet<String> codigoCurso, HashSet<String> codigoDisciplina, ArrayList<Disciplina> disciplinasRealizadas){
 
 		JMenuItem menuItem; 
+		Curso curso = new Curso();
 
 		menuItem = new JMenuItem("Lançar notas...",
 				new ImageIcon("images/newfile.png"));
@@ -114,85 +115,7 @@ public class LancarNota extends Menu{
 
 						if(e.getSource() == okButton) {
 
-
-							if(textCodigoCurso.getText() != null && !textCodigoCurso.getText().isEmpty()) {
-								
-								if(textCodigoDisciplina.getText() != null && !textCodigoDisciplina.getText().isEmpty()) {
-									
-									if(textCPF.getText() != null && !textCPF.getText().isEmpty()) {
-										
-										if(textNota.getText() != null && !textNota.getText().isEmpty()) {
-											
-
-											for(int i = 0; i < cursos.size(); i++){
-												if(cursos.get(i).getCodigo().contains(textCodigoCurso.getText())) {
-													
-													for(int j = 0; j < cursos.get(i).getDisciplina().size(); j++){
-														if(cursos.get(i).getDisciplina().get(j).getCodigo().contains(textCodigoDisciplina.getText())) {
-																																												
-															disciplinasRealizadas.add(cursos.get(i).getDisciplina().get(j));	
-
-															for(int k = 0; k < cursos.get(i).getAluno().size(); k++){
-																if(cursos.get(i).getAluno().get(k).getCpf().contains(textCPF.getText())) {
-																	
-																	cursos.get(i).getAluno().get(k).setDisciplinaRealizadas(disciplinasRealizadas);
-																	for(int l = 0; l < cursos.get(i).getAluno().get(k).getDisciplinaRealizadas().size(); l++){
-																		
-																		if(cursos.get(i).getDisciplina().get(j).getCodigo().contains(textCodigoDisciplina.getText())) {
-																			
-																			float nota = Float.parseFloat(textNota.getText());
-
-																			if(nota < 0)
-																				nota = 0;
-																			if(nota > 10)
-																				nota = 10;
-
-																			cursos.get(i).getAluno().get(k).getDisciplinaRealizadas().get(l).setNota(nota);
-																			System.out.println("Cadastro de nota realizado " + cursos.get(i).getAluno().get(k).getDisciplinaRealizadas().get(l).getNota());
-
-																			float cargaHoraria = 0;
-																			
-																			for(int m = 0; m < cursos.get(i).getAluno().get(k).getDisciplinaRealizadas().get(k).getAulas().size(); m++){
-
-																				float horas = cursos.get(i).getAluno().get(k).getDisciplinaRealizadas().get(k).getAulas().get(m).getDuracao();
-																																				
-																				cargaHoraria += horas;																																							
-																																																													
-																			}
-																			
-																			cursos.get(i).getAluno().get(k).setTotalCargaHorariaCumprida(cargaHoraria);
-																			System.out.println("Cadastro de carga horária realizado " + cursos.get(i).getAluno().get(k).getTotalCargaHorariaCumprida());
-																		
-
-																		}
-																	}
-
-																}
-
-
-
-															}
-
-														}
-
-													}
-
-												}
-											}
-
-										}else {
-											JOptionPane.showMessageDialog(frame, "Erro: Nota inválida!");
-										}
-									}else {
-										JOptionPane.showMessageDialog(frame, "Erro: CPF inválido!");
-									}
-								}else {
-									JOptionPane.showMessageDialog(frame, "Erro: Código disciplina inválida!");
-								}
-
-							}else {
-								JOptionPane.showMessageDialog(frame, "Erro: Código curso inválido!");
-							}
+							curso.cadastrarNota(cursos, disciplinasRealizadas, textCodigoCurso, textCodigoDisciplina, textCPF, textNota, frame);
 
 						}
 

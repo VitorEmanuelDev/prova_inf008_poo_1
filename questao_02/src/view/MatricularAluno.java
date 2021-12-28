@@ -30,6 +30,7 @@ public class MatricularAluno extends Menu{
 		JMenuBar menuBar;
 		JMenu submenu;
 		JMenuItem menuItem; 
+		Curso curso = new Curso();
 
 		//a submenu
 		menu.addSeparator();
@@ -106,62 +107,7 @@ public class MatricularAluno extends Menu{
 					@SuppressWarnings("deprecation")
 					public void actionPerformed(ActionEvent e) {
 
-
-						if(textCodigoCurso.getText() != null && !textCodigoCurso.getText().isEmpty()) {
-
-							if(textFieldCodigoDisciplina.getText() != null && !textFieldCodigoDisciplina.getText().isEmpty()) {
-
-								if(textCPFAluno.getText() != null && !textCPFAluno.getText().isEmpty()) {
-
-
-									for(int i = 0; i < cursos.size(); i++) {
-
-										for(int j = 0; j < cursos.get(i).getDisciplina().size(); j++) {
-
-
-
-											if(cursos.get(i).getDisciplina().get(j).getCodigo().contains(textFieldCodigoDisciplina.getText())) {
-
-												//System.out.println(cursos.get(i).getAluno().get(0).getCpf().toString());
-
-												for (int k = 0; k < alunos.size(); k++) {
-
-													if(alunos.get(k).getCpf().contains(textCPFAluno.getText())) {
-														
-														
-					
-														System.out.println("legit " +cursos.get(i).getDisciplina().get(j).getDatas());
-														disciplinasInscritas.add(cursos.get(i).getDisciplina().get(j));
-														//alunos.get(k).setDisciplinasInscritas(disciplinasInscritas);
-														alunos.get(k).setDisciplinasInscritas(disciplinasInscritas);
-														System.out.println(alunos.get(k).getDisciplinasInscritas().get(0).getDatas());
-														System.out.println("Aluno matriculado no disciplina " + alunos.get(k).getDisciplinasInscritas());
-													}
-												}
-											}
-										}
-									}
-									//08:00-12:00
-
-									//14:00-18:00
-
-
-								}else {
-
-									JOptionPane.showMessageDialog(frame, "Erro: CPF inválido");
-								}
-
-
-							}else {
-
-								JOptionPane.showMessageDialog(frame, "Erro: Código não encontrado");
-							}
-
-
-						}else {
-
-							JOptionPane.showMessageDialog(frame, "Erro: Código não cadastrado");
-						}
+						curso.matricularAlunoDisciplina(cursos, disciplinasInscritas, textCodigoCurso, textFieldCodigoDisciplina, textCPFAluno, frame);
 
 						JOptionPane.showMessageDialog(frame, "Cadastro realizado!");
 
@@ -247,78 +193,8 @@ public class MatricularAluno extends Menu{
 					public void actionPerformed(ActionEvent e) {
 
 						Aluno aluno = new Aluno();
-
-						if(textCodigoCurso.getText() != null && !textCodigoCurso.getText().isEmpty()) {
-
-							if(codigoCurso.contains(textCodigoCurso.getText())) {
-								if(textCPFAluno.getText() != null && !textCPFAluno.getText().isEmpty()) {
-
-									if(textCPFAluno.getText().equals("00000000000") ||
-											textCPFAluno.getText().equals("11111111111") ||
-											textCPFAluno.getText().equals("22222222222") ||
-											textCPFAluno.getText().equals("33333333333") ||											
-											textCPFAluno.getText().equals("44444444444") || 
-											textCPFAluno.getText().equals("55555555555") ||
-											textCPFAluno.getText().equals("66666666666") || 
-											textCPFAluno.getText().equals("77777777777") ||
-											textCPFAluno.getText().equals("88888888888") ||
-											textCPFAluno.getText().equals("99999999999")) {
-
-										JOptionPane.showMessageDialog(frame, "Erro: CPF inválido");
-
-									}else if(textCPFAluno.getText().length() != 11) {
-
-										JOptionPane.showMessageDialog(frame, "Erro: CPF inválido");
-
-									}
-
-									char[] CPFChar = textCPFAluno.getText().toCharArray();
-
-									for(int i = 0; i < CPFChar.length; i++) {
-
-										if(CPFChar[i] != '1' && CPFChar[i] != '2' && CPFChar[i] != '3' &&
-												CPFChar[i] != '4' && CPFChar[i] != '5' && CPFChar[i] != '6' &&
-												CPFChar[i] != '7' && CPFChar[i] != '8' && CPFChar[i] != '9' &&
-												CPFChar[i] != '0')
-											JOptionPane.showMessageDialog(frame, "Erro: CPF inválido");
-
-									}
-
-									CPF.add(textCPFAluno.getText());
-									aluno.setCpf(CPF);
-
-								}else {
-
-									JOptionPane.showMessageDialog(frame, "Erro: CPF inválido");
-								}
-
-								if(textNomeAluno.getText() != null && !textNomeAluno.getText().isEmpty()) {
-
-									aluno.setNome(textNomeAluno.getText());
-
-								}else {
-
-									JOptionPane.showMessageDialog(frame, "Erro: CPF inválido");
-								}
-
-							}else {
-
-								JOptionPane.showMessageDialog(frame, "Erro: Código não encontrado");
-							}
-
-
-
-						}else {
-
-							JOptionPane.showMessageDialog(frame, "Erro: Código não cadastrado");
-						}
-
-
-						alunos.add(aluno);
-						for(int i = 0; i < cursos.size(); i++) {
-							if(cursos.get(i).getCodigo().contains(textCodigoCurso.getText()))
-								cursos.get(i).setAluno(alunos);
-						}
+						
+						curso.matricularAlunoCurso(cursos, codigoCurso, CPF, alunos, aluno, textCodigoCurso, textCPFAluno, textNomeAluno, frame);
 
 						System.out.println("Cadastro aluno realizado " + alunos.get(contadorAlunoNovo));
 						contadorAlunoNovo++;
